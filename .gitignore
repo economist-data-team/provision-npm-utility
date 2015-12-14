@@ -1,0 +1,10 @@
+*~
+Thumbs.db
+node_modules/
+_site/
+*.log
+*.log.*
+*.pid
+*.seed
+*.html
+lib
