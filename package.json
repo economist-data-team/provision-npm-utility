@@ -1,0 +1,65 @@
+{
+  "name": "@economist/provision-react-component",
+  "version": "0.0.0-development",
+  "description": "Rapidly provision React components",
+  "homepage": "http://economist-components.github.io/provision-react-component",
+  "bugs": "http://github.com/economist-components/provision-react-component/issues",
+  "license": "LicenseRef-LICENSE",
+  "author": "The Economist Editorial (https://economist.com)",
+  "main": "lib/index.js",
+  "bin": {
+    "provision-react-component": "lib/index.js"
+  },
+  "repository": "git://github.com/economist-components/provision-react-component",
+  "scripts": {
+    "lint": "eslint . --ignore-path .gitignore",
+    "prepublish": "babel src -d lib",
+    "test": "npm run lint",
+    "watch": "npm run prepublish -- -w"
+  },
+  "babel": {
+    "compact": false,
+    "ignore": "node_modules",
+    "loose": "all",
+    "optional": "runtime",
+    "retainLines": true,
+    "stage": 2
+  },
+  "eslintConfig": {
+    "extends": "strict",
+    "parser": "babel-eslint",
+    "rules": {
+      "spaced-comment": 0
+    }
+  },
+  "dependencies": {
+    "babel-runtime": "^5.8.34",
+    "lodash.camelcase": "^3.0.1",
+    "lodash.capitalize": "^3.0.0",
+    "lodash.compose": "^2.4.1",
+    "lodash.defaultsdeep": "^3.10.0",
+    "lodash.get": "^3.7.0",
+    "lodash.kebabcase": "^3.0.1",
+    "lodash.uniq": "^3.2.2",
+    "lodash.without": "^3.2.1",
+    "packagesmith": "^1.0.2",
+    "packagesmith.formats.json": "^1.0.1",
+    "packagesmith.formats.multiline": "^1.0.1",
+    "packagesmith.questions.description": "^1.0.1",
+    "packagesmith.questions.name": "^1.0.1",
+    "parse-packagejson-name": "^1.0.0",
+    "provision-editorconfig": "^1.0.1",
+    "provision-git": "^1.1.0",
+    "provision-gitignore": "^1.0.2",
+    "provision-npm-babel": "^1.0.0",
+    "provision-npm-semantic-release": "^1.0.0",
+    "sort-package-json": "^1.1.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.34",
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-config-strict": "^7.0.2",
+    "eslint-plugin-filenames": "^0.2.0"
+  }
+}
