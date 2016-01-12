@@ -13,6 +13,7 @@ function addDoc(packageJson) {
     },
     devDependencies: {
       'npm-run-all': '^1.3.3',
+      'git-directory-deploy': '^1.3.0',
     },
     scripts: {
       predoc: 'mkdir -p $npm_package_directories_site',
