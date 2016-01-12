@@ -56,7 +56,7 @@ function addDocCss(packageJson) {
             '-u postcss-import',
             '-u postcss-url',
             '-u postcss-cssnext',
-            '-u postcss-reporter'
+            '-u postcss-reporter',
           ].join(' ')),
         },
       },
