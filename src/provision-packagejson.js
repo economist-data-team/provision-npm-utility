@@ -18,13 +18,16 @@ export function provisionPackageJson() {
           scope: 'economist',
         };
         const packageName = `component-${kebabCase(parsedPackageName.fullName.replace(/^component-/, ''))}`;
+        let bugsUrl = `http://github.com/economist-components/${packageName}/issues`;
+        if (typeof packageJson.bugs === 'string') {
+          bugsUrl = packageJson.bugs;
+          Reflect.deleteProperty(packageJson, 'bugs');
+        }
         return sortPackageJson(defaultsDeep({
           name: `@${parsedPackageName.scope}/${packageName}`,
           description: answers.description,
           homepage: `http://github.com/economist-components/${packageName}`,
-          bugs: {
-            url: `http://github.com/economist-components/${packageName}/issues`,
-          },
+          bugs: { url: bugsUrl },
           scripts: {
             'build:css': 'mkdir -p lib/&& cp $npm_package_directories_src/*.css $npm_package_directories_lib',
             start: 'npm run watch',
