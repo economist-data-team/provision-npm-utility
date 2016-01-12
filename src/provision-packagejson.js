@@ -33,6 +33,7 @@ export function provisionPackageJson() {
             'build:css': 'cp $npm_package_directories_src/*.css $npm_package_directories_lib',
             start: 'npm run watch',
             watch: 'npm-run-all --parallel watch:*',
+            'watch:serve': 'live-server site/ --wait 500',
             prepublish: 'npm run build',
             build: 'npm-run-all --parallel build:*',
             provision: 'provision-react-component',
@@ -40,6 +41,7 @@ export function provisionPackageJson() {
           },
           devDependencies: {
             '@economist/provision-react-component': moduleJson.version,
+            'live-server': '^0.9.0',
           },
         }, packageJson));
       }),
