@@ -84,7 +84,7 @@ This will start watching all of the source files, and compile them whenever they
 
 #### `npm test`
 
-This will run the unit tests in a suite of browsers, depending on your current system setup. If you have a `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` it will use SauceLabs to run tests remotely on a host of browsers. Otherwise it will try to run them in PhantomJS.
+This will run the unit tests in a suite of browsers, depending on your current system setup. If you have a `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` it will use SauceLabs to run tests remotely on a set of browsers. Otherwise it will try to run them in PhantomJS.
 
 To utilise SauceLabs, run the following:
 
@@ -193,7 +193,7 @@ This task runs all of the `watch` tasks; by default these are [`npm run watch:se
 
 #### `npm run watch:serve`
 
-This task uses [`live-server`](https://github.com/tapio/live-server) to watc over the [`site/` directory](#site-directory) and serve the contents.L
+This task uses [`live-server`](https://github.com/tapio/live-server) to watch over the [`site/` directory](#site-directory) and serve the contents.L
 
 You can configure the directory that it serves by changing the `package.json` `directories.site` field.
 
