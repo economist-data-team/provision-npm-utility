@@ -6,8 +6,15 @@ import sortPackageJson from 'sort-package-json';
 import defaultsDeep from 'lodash.defaultsdeep';
 import unique from 'lodash.uniq';
 import { packageToClass } from './provision-mainfiles';
+import { readFileSync as readFile } from 'fs';
+import { resolve as resolvePath } from 'fs';
+const karmaConf = readFile(resolvePath(__dirname, '../assets/karma.conf.js'), 'utf8');
 export function provisionTestFiles() {
   return {
+
+    'karma.conf.js': {
+      contents: () => karmaConf,
+    },
 
     'package.json': {
       after: 'npm install',
