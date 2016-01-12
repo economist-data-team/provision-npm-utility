@@ -29,7 +29,8 @@ export function provisionPackageJson() {
           homepage: `http://github.com/economist-components/${packageName}`,
           bugs: { url: bugsUrl },
           scripts: {
-            'build:css': 'mkdir -p lib/&& cp $npm_package_directories_src/*.css $npm_package_directories_lib',
+            'prebuild:css': 'mkdir -p $npm_package_directories_lib',
+            'build:css': 'cp $npm_package_directories_src/*.css $npm_package_directories_lib',
             start: 'npm run watch',
             watch: 'npm-run-all --parallel watch:*',
             prepublish: 'npm run build',
