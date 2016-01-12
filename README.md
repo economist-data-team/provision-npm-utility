@@ -183,7 +183,7 @@ You can configure the templates that are compiled by changing the `package.json`
 
 #### `npm run pages`
 
-This task uses [`git-directory-deploy`]() to push the [`site/` directory](#site-directory) into your origin's `gh-pages` branch. Running this command will overwrite your gh-pages website with the new contents.
+This task uses [`git-directory-deploy`](https://github.com/lukekarrys/git-directory-deploy) to push the [`site/` directory](#site-directory) into your origin's `gh-pages` branch. Running this command will overwrite your gh-pages website with the new contents.
 
 Your gh-pages website is `https://YOUR-USERNAME.github.io/THE-REPO` - for example if your username was "economist-components" and the repository name was "comoonent-icon" then the pages url would be `https://economist-components.github.io/component-icon`.
 
