@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { basename as baseNamePath } from 'path';
 import { runProvisionerSet, combineProvisionerSets } from 'packagesmith';
 import provisionEditorConfig from 'provision-editorconfig';
 import provisionGit from 'provision-git';
@@ -14,10 +15,14 @@ import provisionPackageJson from './provision-packagejson';
 import provisionReactTestSuite from './provision-react-testsuite';
 import provisionReadme from './provision-readme';
 import provisionStylelintConfigStrict from './provision-stylelint-config-strict';
+const git = provisionGit();
+git['.git/config'].questions[0].default = (answers, dirname) => (
+  `git@github.com/economist-components/${answers.name || baseNamePath(dirname)}`
+);
 export function provisionReactComponent() {
   return combineProvisionerSets(
     provisionEditorConfig(),
-    provisionGit(),
+    git,
     provisionGitIgnore({
       gitIgnoreTemplates: [
         'node',
