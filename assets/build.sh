@@ -37,6 +37,6 @@ exec docker run \
         { [ \"$(git rev-parse --abbrev-ref HEAD)\" != \"master\" ] || npm run pages; } ; \
         RETURN_CODE=\$?; \
         echo \"Build finished with status \${RETURN_CODE}\"; \
-        npm run semantic-release \
+        npm run semantic-release; \
         exit \${RETURN_CODE}
     ";
