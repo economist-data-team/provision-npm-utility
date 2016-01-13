@@ -35,7 +35,7 @@ export function provisionEslintConfigStrict() {
           },
         },
         scripts: {
-          pretest: 'npm run lint',
+          pretest: 'npm run lint && npm run doc:js',
           lint: 'npm-run-all --parallel lint:*',
           'lint:js': 'eslint $npm_package_config_lint_options $npm_package_directories_src',
         },

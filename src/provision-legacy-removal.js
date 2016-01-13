@@ -18,6 +18,7 @@ export function provisionLegacyRemoval() {
           Reflect.deleteProperty(packageJson.scripts, 'serve');
           Reflect.deleteProperty(packageJson.scripts, 'prepublish:watch');
           Reflect.deleteProperty(packageJson.scripts, 'test:base');
+          Reflect.deleteProperty(packageJson.scripts, 'doc:watch');
           Reflect.deleteProperty(packageJson.scripts, 'doc:js:watch');
           Reflect.deleteProperty(packageJson.scripts, 'doc:css:watch');
           Reflect.deleteProperty(packageJson.scripts, 'doc:html:watch');

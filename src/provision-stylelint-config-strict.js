@@ -13,11 +13,11 @@ export function provisionEslintConfigStrict() {
         stylelint: {
           extends: unique([
             ...getObjectPath(packageJson, 'stylelint.extends', []),
-            'strict',
+            'stylelint-config-strict',
           ]),
         },
         devDependencies: {
-          'stylelint': '^3.1.2',
+          'stylelint': '^3.2.0',
           'stylelint-config-strict': '^1.0.0',
         },
         config: {

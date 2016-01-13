@@ -13,8 +13,10 @@ function addDoc(packageJson) {
     },
     devDependencies: {
       'npm-run-all': '^1.3.3',
+      'git-directory-deploy': '^1.3.0',
     },
     scripts: {
+      'prewatch:doc': 'npm run predoc',
       predoc: 'mkdir -p $npm_package_directories_site',
       doc: 'npm-run-all --parallel doc:*',
       'watch:doc': 'npm-run-all --parallel watch:doc:*',
@@ -54,14 +56,18 @@ function addDocCss(packageJson) {
             '-u postcss-import',
             '-u postcss-url',
             '-u postcss-cssnext',
-            '-u postcss-reporter'
-          ]),
+            '-u postcss-reporter',
+          ].join(' ')),
         },
       },
     },
     scripts: {
-      'doc:css': 'postcss $npm_package_config_doc_css_options $npm_package_examplestyle' +
-        ' > $npm_package_directories_site/bundle.css',
+      'doc:css': [
+        'postcss',
+        '$npm_package_config_doc_css_options',
+        '$npm_package_examplestyle',
+        '-o $npm_package_directories_site/bundle.css',
+      ].join(' '),
       'watch:doc:css': 'npm run doc:css -- --watch',
     },
   }, packageJson);
@@ -70,17 +76,26 @@ function addDocCss(packageJson) {
 function addDocHtml(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      'component-docgen': '^1.0.0',
+      '@economist/doc-pack': '^1.0.0',
+      'hbs-cli': '^1.0.0',
     },
     config: {
       doc: {
         html: {
-          files: getObjectPath(packageJson, 'config.doc.html.files', 'index standalone'),
+          files: getObjectPath(packageJson, 'config.doc.html.files', [
+            '@economist/doc-pack/templates/index.hbs',
+            '@economist/doc-pack/templates/standalone.hbs',
+          ].join(' ')),
         },
       },
     },
     scripts: {
-      'doc:html': 'docgen --outdir $npm_package_directories_site $npm_package_config_doc_html_files',
+      'doc:html': [
+        'hbs',
+        '-H @economist/doc-pack',
+        '-o $npm_package_directories_site',
+        '$npm_package_config_doc_html_files',
+      ].join(' '),
       'watch:doc:html': 'npm run doc:html -- --watch',
     },
   }, packageJson);
@@ -94,7 +109,7 @@ function addDocJs(packageJson) {
     config: {
       doc: {
         js: { // eslint-disable-line id-length
-          options: getObjectPath(packageJson, 'config.doc.js.options', '-d'),
+          options: getObjectPath(packageJson, 'config.doc.js.options', '-d -r react -r react-dom'),
         },
       },
     },
