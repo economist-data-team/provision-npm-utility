@@ -16,6 +16,7 @@
   },
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
+    "pages": "echo stub for build.sh",
     "prepublish": "babel src -d lib",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "npm run lint",
