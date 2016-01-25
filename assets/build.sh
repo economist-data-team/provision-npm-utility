@@ -8,7 +8,7 @@ SINOPIA_URL="http://${HOST_IP}:4873"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 # Fake the environment for the default semantic-release verifier
 export TRAVIS_PULL_REQUEST="true"
-if [ "$TRAVIS_BRANCH" = "master" ]
+if [ "$BRANCH" = "master" ]
 then
   TRAVIS_PULL_REQUEST="false"
 fi
