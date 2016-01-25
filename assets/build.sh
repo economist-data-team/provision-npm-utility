@@ -3,12 +3,11 @@
 SSH_KEY="${1:-/root/.ssh/id_rsa}"
 DOCKER_IMAGE="economistprod/node4-base"
 HOST_IP=$(ip route get 1 | awk '{print $NF;exit}')
+WITH_SINOPIA=${WITH_SINOPIA:-"true"}
 SINOPIA_URL="http://${HOST_IP}:4873"
-# Fake the environment for the default semantic-release verifier
-TRAVIS="true"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-TRAVIS_BRANCH="$BRANCH"
-TRAVIS_PULL_REQUEST="true"
+# Fake the environment for the default semantic-release verifier
+export TRAVIS_PULL_REQUEST="true"
 if [ "$TRAVIS_BRANCH" = "master" ]
 then
   TRAVIS_PULL_REQUEST="false"
@@ -25,6 +24,10 @@ exec docker run \
     -v "${SSH_KEY}":/root/.ssh/id_rsa \
     -v "$(pwd)":/code \
     -e NODE_ENV="${NODE_ENV:-test}" \
+    -e TRAVIS="true" \
+    -e BRANCH="${BRANCH}" \
+    -e TRAVIS_BRANCH="${BRANCH}" \
+    -e TRAVIS_PULL_REQUEST="${TRAVIS_PULL_REQUEST}" \
     "${DOCKER_IMAGE}" \
     /bin/sh -cx "\
         trap 'chmod 777 node_modules -R' EXIT &&\
@@ -32,9 +35,12 @@ exec docker run \
         umask 000 &&\
         printf \"@economist:registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=%s\n\" \"$NPM_TOKEN\" > ~/.npmrc &&\
         { \
-          curl -I \"$SINOPIA_URL\" --max-time 5 &&\
-          npm set registry \"$SINOPIA_URL\" &&\
-          echo \"Using sinopia cache registry available on $SINOPIA_URL\" ;\
+          [ \"$WITH_SINOPIA\" != \"true\" ] || \
+          (
+            curl -I \"$SINOPIA_URL\" --max-time 5 &&\
+            npm set registry \"$SINOPIA_URL\" &&\
+            echo \"Using sinopia cache registry available on $SINOPIA_URL\" ;\
+          );
           true ;\
         } &&\
         npm i &&\
