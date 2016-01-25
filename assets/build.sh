@@ -43,6 +43,7 @@ exec docker run \
           );
           true ;\
         } &&\
+	npm run env &&\
         npm i &&\
         SAUCE_USERNAME=${SAUCE_USERNAME} \
         SAUCE_ACCESS_KEY=${SAUCE_ACCESS_KEY} \
