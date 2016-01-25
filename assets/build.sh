@@ -28,6 +28,7 @@ exec docker run \
     -e BRANCH="${BRANCH}" \
     -e TRAVIS_BRANCH="${BRANCH}" \
     -e TRAVIS_PULL_REQUEST="${TRAVIS_PULL_REQUEST}" \
+    -e npm_config_loglevel="${npm_config_loglevel:-warn}" \
     "${DOCKER_IMAGE}" \
     /bin/sh -cx "\
         trap 'chmod 777 node_modules -R' EXIT &&\
