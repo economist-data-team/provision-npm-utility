@@ -3,6 +3,7 @@
 SSH_KEY="${1:-/root/.ssh/id_rsa}"
 DOCKER_IMAGE="economistprod/node4-base"
 HOST_IP=$(ip route get 1 | awk '{print $NF;exit}')
+WITH_SINOPIA=${WITH_SINOPIA:-"true"}
 SINOPIA_URL="http://${HOST_IP}:4873"
 # Fake the environment for the default semantic-release verifier
 TRAVIS="true"
@@ -32,9 +33,12 @@ exec docker run \
         umask 000 &&\
         printf \"@economist:registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=%s\n\" \"$NPM_TOKEN\" > ~/.npmrc &&\
         { \
-          curl -I \"$SINOPIA_URL\" --max-time 5 &&\
-          npm set registry \"$SINOPIA_URL\" &&\
-          echo \"Using sinopia cache registry available on $SINOPIA_URL\" ;\
+          [ \"$WITH_SINOPIA\" != \"true\" ] || \
+          (
+            curl -I \"$SINOPIA_URL\" --max-time 5 &&\
+            npm set registry \"$SINOPIA_URL\" &&\
+            echo \"Using sinopia cache registry available on $SINOPIA_URL\" ;\
+          );
           true ;\
         } &&\
         npm i &&\
