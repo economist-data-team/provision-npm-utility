@@ -23,6 +23,7 @@ docker pull "${DOCKER_IMAGE}"
 exec docker run \
     -v "${SSH_KEY}":/root/.ssh/id_rsa \
     -v "$(pwd)":/code \
+    -e CI="true" \
     -e NODE_ENV="${NODE_ENV:-test}" \
     -e TRAVIS="true" \
     -e BRANCH="${BRANCH}" \
