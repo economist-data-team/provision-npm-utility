@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git///github.com/economist-components/provision-react-component"
+    "url": "git+ssh://github.com/economist-components/provision-react-component"
   },
   "scripts": {
     "lint": "eslint . --ignore-path .gitignore",
