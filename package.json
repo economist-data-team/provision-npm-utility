@@ -19,6 +19,12 @@
     "pages": "echo stub for build.sh",
     "prepublish": "babel src -d lib",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "postpublish": "npm run access",
+    "access": "npm-run-all --parallel access:*",
+    "access:yld": "npm access grant read-only economist:yld $npm_package_name",
+    "access:editorial": "npm access grant read-only economist:economist-editorial $npm_package_name",
+    "access:infographics": "npm access grant read-only economist:infographics $npm_package_name",
+    "access:sudo": "npm access grant read-write economist:read-write-all $npm_package_name",
     "test": "npm run lint",
     "watch": "npm run prepublish -- -w"
   },
@@ -72,6 +78,7 @@
     "eslint-config-strict": "^7.0.2",
     "eslint-plugin-filenames": "^0.2.0",
     "ghooks": "^1.0.1",
+    "npm-run-all": "^1.5.0",
     "semantic-release": "^4.3.5",
     "validate-commit-msg": "^1.0.0"
   }
