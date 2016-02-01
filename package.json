@@ -6,6 +6,10 @@
   "bugs": "http://github.com/economist-components/provision-react-component/issues",
   "license": "LicenseRef-LICENSE",
   "author": "The Economist Editorial (https://economist.com)",
+  "files": [
+    "assets/*",
+    "lib/*.js"
+  ],
   "main": "lib/index.js",
   "bin": {
     "provision-react-component": "lib/index.js"
