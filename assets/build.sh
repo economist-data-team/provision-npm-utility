@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SSH_KEY="${1:-/root/.ssh/id_rsa}"
-DOCKER_IMAGE="economistprod/node4-base"
+DOCKER_IMAGE="docker.io/economist/base-node:latest"
 HOST_IP=$(ip route get 1 | awk '{print $NF;exit}')
 WITH_SINOPIA=${WITH_SINOPIA:-"true"}
 SINOPIA_URL="http://${HOST_IP}:4873"
