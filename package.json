@@ -19,16 +19,16 @@
     "url": "git+ssh://github.com/economist-components/provision-react-component"
   },
   "scripts": {
-    "lint": "eslint . --ignore-path .gitignore",
-    "pages": "echo stub for build.sh",
-    "prepublish": "babel src -d lib",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "postpublish": "npm run access",
     "access": "npm-run-all --parallel access:*",
-    "access:yld": "npm access grant read-only economist:yld $npm_package_name",
     "access:editorial": "npm access grant read-only economist:economist-editorial $npm_package_name",
     "access:infographics": "npm access grant read-only economist:infographics $npm_package_name",
     "access:sudo": "npm access grant read-write economist:read-write-all $npm_package_name",
+    "access:yld": "npm access grant read-only economist:yld $npm_package_name",
+    "lint": "eslint . --ignore-path .gitignore",
+    "pages": "echo stub for build.sh",
+    "prepublish": "babel src -d lib",
+    "postpublish": "npm run access",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "npm run lint",
     "watch": "npm run prepublish -- -w"
   },
