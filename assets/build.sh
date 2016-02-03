@@ -47,7 +47,7 @@ exec docker run \
           );
           true ;\
         } &&\
-        npm config set unsafe-perm true
+        npm config set unsafe-perm true &&\
         npm run env &&\
         npm i &&\
         SAUCE_USERNAME=${SAUCE_USERNAME} \
