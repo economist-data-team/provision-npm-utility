@@ -28,7 +28,7 @@
     "pages": "echo stub for build.sh",
     "prepublish": "babel src -d lib",
     "postpublish": "npm run access",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "semantic-release": "semantic-release pre || exit 0; npm publish && semantic-release post",
     "test": "npm run lint",
     "watch": "npm run prepublish -- -w"
   },
