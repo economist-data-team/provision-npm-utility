@@ -34,6 +34,7 @@ export function provisionEslintConfigStrict() {
           pretest: 'npm run lint',
           lint: 'npm-run-all --parallel lint:*',
           'lint:css': 'stylelint $npm_package_config_lint_css_options $npm_package_directories_src/*.css',
+          'semantic-release': 'semantic-release pre || exit 0; npm publish && semantic-release post',
         },
       }, packageJson))),
     },
