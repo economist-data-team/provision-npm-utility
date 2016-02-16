@@ -7,7 +7,7 @@ import provisionGitIgnore from 'provision-gitignore';
 import provisionNpmBabel from 'provision-npm-babel';
 import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
 import provisionDocgen from './provision-docgen';
-import provisionEslintConfigStrict from './provision-eslint-config-strict';
+import provisionEslint from 'provision-eslint';
 import provisionGocdFe from './provision-gocd-fe';
 import provisionLegacyRemoval from './provision-legacy-removal';
 import provisionMainFiles from './provision-mainfiles';
@@ -32,7 +32,7 @@ export function provisionReactComponent() {
       ],
       additionalLines: [
         'lib/',
-        'site',
+        'site/',
       ],
     }),
     provisionNpmBabel({
@@ -47,7 +47,13 @@ export function provisionReactComponent() {
     }),
     provisionNpmSemanticRelease(),
     provisionDocgen(),
-    provisionEslintConfigStrict(),
+    provisionEslint({
+      presets: {
+        'strict': '^8.2.0',
+        'strict-react': '^6.0.0',
+      },
+      scriptName: 'lint:js',
+    }),
     provisionGocdFe(),
     provisionLegacyRemoval(),
     provisionMainFiles(),

@@ -74,6 +74,7 @@
     "packagesmith.questions.name": "^1.0.1",
     "parse-packagejson-name": "^1.0.0",
     "provision-editorconfig": "^1.0.1",
+    "provision-eslint": "^1.0.0",
     "provision-git": "^1.1.0",
     "provision-gitignore": "^1.0.2",
     "provision-npm-babel": "^1.0.0",
