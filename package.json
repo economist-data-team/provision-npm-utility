@@ -14,6 +14,10 @@
   "bin": {
     "provision-react-component": "lib/index.js"
   },
+  "directories": {
+    "lib": "lib",
+    "src": "src"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://github.com/economist-components/provision-react-component"
@@ -25,9 +29,9 @@
     "access:infographics": "npm access grant read-only economist:infographics $npm_package_name",
     "access:sudo": "npm access grant read-write economist:read-write-all $npm_package_name",
     "access:yld": "npm access grant read-only economist:yld $npm_package_name",
-    "lint": "eslint . --ignore-path .gitignore",
+    "lint": "eslint $npm_package_directories_src",
     "pages": "echo stub for build.sh",
-    "prepublish": "babel src -d lib",
+    "prepublish": "babel $npm_package_directories_src -d $npm_package_directories_lib",
     "postpublish": "npm run access",
     "semantic-release": "semantic-release pre || exit 0; npm publish && semantic-release post",
     "test": "npm run lint",
@@ -48,52 +52,56 @@
       "es2015-loose",
       "stage-2"
     ],
-    "retainLines": true
+    "retainLines": true,
+    "sourceMaps": "inline"
   },
   "eslintConfig": {
-    "extends": "strict",
+    "extends": [
+      "strict"
+    ],
     "parser": "babel-eslint",
     "rules": {
       "spaced-comment": 0
     }
   },
   "dependencies": {
-    "babel-runtime": "^6.3.19",
-    "lodash.camelcase": "^4.0.1",
-    "lodash.capitalize": "^4.0.2",
+    "babel-runtime": "^6.5.0",
+    "lodash.camelcase": "^4.1.0",
+    "lodash.capitalize": "^4.1.1",
     "lodash.compose": "^2.4.1",
-    "lodash.defaultsdeep": "^4.0.3",
-    "lodash.get": "^4.0.1",
-    "lodash.kebabcase": "^3.0.1",
-    "lodash.uniq": "^4.0.1",
-    "lodash.without": "^4.0.1",
-    "packagesmith": "^1.0.2",
+    "lodash.defaultsdeep": "^4.2.0",
+    "lodash.get": "^4.1.2",
+    "lodash.kebabcase": "^4.0.0",
+    "lodash.uniq": "^4.2.0",
+    "lodash.without": "^4.1.0",
+    "packagesmith": "^1.1.0",
     "packagesmith.formats.json": "^1.0.1",
     "packagesmith.formats.multiline": "^1.0.1",
     "packagesmith.questions.description": "^1.0.1",
     "packagesmith.questions.name": "^1.0.1",
     "parse-packagejson-name": "^1.0.0",
     "provision-editorconfig": "^1.0.1",
+    "provision-eslint": "^1.0.0",
     "provision-git": "^1.1.0",
     "provision-gitignore": "^1.0.2",
     "provision-npm-babel": "^1.0.0",
     "provision-npm-semantic-release": "^1.0.0",
-    "sort-package-json": "^1.1.3"
+    "sort-package-json": "^1.3.0"
   },
   "devDependencies": {
-    "babel": "^6.3.26",
-    "babel-cli": "^6.4.5",
+    "babel-cli": "^6.5.1",
+    "babel-core": "^6.5.2",
     "babel-eslint": "^4.1.8",
-    "babel-plugin-transform-runtime": "^6.4.3",
-    "babel-preset-es2015": "^6.3.13",
+    "babel-plugin-transform-runtime": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
     "babel-preset-es2015-loose": "^7.0.0",
-    "babel-preset-stage-2": "^6.3.13",
-    "eslint": "^1.10.3",
-    "eslint-config-strict": "^7.0.2",
+    "babel-preset-stage-2": "^6.5.0",
+    "eslint": "^2.1.0",
+    "eslint-config-strict": "^8.2.0",
     "eslint-plugin-filenames": "^0.2.0",
     "ghooks": "^1.0.1",
     "npm-run-all": "^1.5.0",
     "semantic-release": "^4.3.5",
-    "validate-commit-msg": "^1.0.0"
+    "validate-commit-msg": "^2.0.0"
   }
 }

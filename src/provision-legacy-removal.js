@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { runProvisionerSet } from 'packagesmith';
-import jsonFile from 'packagesmith.formats.json';
-import sortPackageJson from 'sort-package-json';
 import getObjectPath from 'lodash.get';
+import jsonFile from 'packagesmith.formats.json';
+import { runProvisionerSet } from 'packagesmith';
+import sortPackageJson from 'sort-package-json';
 import without from 'lodash.without';
 export function provisionLegacyRemoval() {
   return {
@@ -61,5 +61,6 @@ export function provisionLegacyRemoval() {
 }
 export default provisionLegacyRemoval;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionLegacyRemoval());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionLegacyRemoval());
 }

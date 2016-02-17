@@ -28,6 +28,11 @@ export function provisionPackageJson() {
           description: answers.description,
           homepage: `http://github.com/economist-components/${packageName}`,
           bugs: { url: bugsUrl },
+          config: {
+            ghooks: {
+              'pre-commit': 'npm run lint',
+            },
+          },
           scripts: {
             'prebuild:css': 'mkdir -p $npm_package_directories_lib',
             'build:css': 'cp $npm_package_directories_src/*.css $npm_package_directories_lib',
@@ -35,6 +40,8 @@ export function provisionPackageJson() {
             watch: 'npm-run-all --parallel watch:*',
             'watch:serve': 'live-server site/ --wait 500',
             prepublish: 'npm run build',
+            pretest: 'npm run lint && npm run doc:js',
+            lint: 'npm-run-all --parallel lint:*',
             postpublish: 'npm run access',
             access: 'npm-run-all --parallel access:*',
             'access:yld': 'npm access grant read-only economist:yld $npm_package_name',
@@ -44,10 +51,11 @@ export function provisionPackageJson() {
             'access:sudo': 'npm access grant read-write economist:read-write-all $npm_package_name',
             build: 'npm-run-all --parallel build:*',
             provision: 'provision-react-component',
-            lint: 'npm-run-all --parallel lint:*',
           },
           devDependencies: {
             '@economist/provision-react-component': moduleJson.version,
+            'eslint-plugin-filenames': '^0.2.0',
+            'eslint-plugin-react': '^3.11.2',
             'live-server': '^0.9.0',
           },
         }, packageJson));

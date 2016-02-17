@@ -1,23 +1,24 @@
 #!/usr/bin/env node
+import { combineProvisionerSets, runProvisionerSet } from 'packagesmith';
 import { basename as baseNamePath } from 'path';
-import { runProvisionerSet, combineProvisionerSets } from 'packagesmith';
+import provisionDocgen from './provision-docgen';
 import provisionEditorConfig from 'provision-editorconfig';
+import provisionEslint from 'provision-eslint';
 import provisionGit from 'provision-git';
 import provisionGitIgnore from 'provision-gitignore';
-import provisionNpmBabel from 'provision-npm-babel';
-import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
-import provisionDocgen from './provision-docgen';
-import provisionEslintConfigStrict from './provision-eslint-config-strict';
 import provisionGocdFe from './provision-gocd-fe';
 import provisionLegacyRemoval from './provision-legacy-removal';
 import provisionMainFiles from './provision-mainfiles';
+import provisionNpmBabel from 'provision-npm-babel';
+import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
 import provisionPackageJson from './provision-packagejson';
 import provisionReactTestSuite from './provision-react-testsuite';
 import provisionReadme from './provision-readme';
 import provisionStylelintConfigStrict from './provision-stylelint-config-strict';
 const git = provisionGit();
-git['.git/config'].questions[0].default = (answers, dirname) => (
-  `git@github.com/economist-components/${answers.name || baseNamePath(dirname)}`
+const gitRepositoryQuestionIndex = 0;
+git['.git/config'].questions[gitRepositoryQuestionIndex].default = (answers, dirname) => (
+  `git@github.com/economist-components/${ answers.name || baseNamePath(dirname) }`
 );
 export function provisionReactComponent() {
   return combineProvisionerSets(
@@ -32,22 +33,24 @@ export function provisionReactComponent() {
       ],
       additionalLines: [
         'lib/',
-        'site',
+        'site/',
       ],
     }),
     provisionNpmBabel({
       babelVersion: 5,
+      babelStage: 2,
+      babelRuntime: true,
       scriptName: 'build:js',
-      babelConfig: {
-        compact: false,
-        stage: 1,
-        sourceMaps: 'inline',
-        ignore: 'node_modules',
-      },
     }),
     provisionNpmSemanticRelease(),
     provisionDocgen(),
-    provisionEslintConfigStrict(),
+    provisionEslint({
+      presets: {
+        'strict': '^8.2.0',
+        'strict-react': '^6.0.0',
+      },
+      scriptName: 'lint:js',
+    }),
     provisionGocdFe(),
     provisionLegacyRemoval(),
     provisionMainFiles(),
@@ -59,5 +62,6 @@ export function provisionReactComponent() {
 }
 export default provisionReactComponent;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionReactComponent());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionReactComponent());
 }
