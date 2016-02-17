@@ -92,6 +92,7 @@ function addDocHtml(packageJson) {
     scripts: {
       'doc:html': [
         'hbs',
+        '-D package.json',
         '-H @economist/doc-pack',
         '-o $npm_package_directories_site',
         '$npm_package_config_doc_html_files',
