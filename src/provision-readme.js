@@ -19,7 +19,7 @@ export function provisionReadme() {
 Simply import the component for use in your project:
 
 \`\`\`js
-import ${ packageToClass(answers) } from '${ answers }';
+import ${ packageToClass(answers) } from '${ answers.name }';
 
 return <${ packageToClass(answers) }/>;
 \`\`\`
@@ -29,7 +29,7 @@ For more examples on usage, see [\`src/example.es6\`]](./src/example.es6).
 ## Install
 
 \`\`\`bash
-npm i -S ${ answers }
+npm i -S ${ answers.name }
 \`\`\`
 
 ## Run tests
