@@ -1,13 +1,14 @@
 #!/usr/bin/env node
-import { runProvisionerSet } from 'packagesmith';
-import nameQuestion from 'packagesmith.questions.name';
-import jsonFile from 'packagesmith.formats.json';
-import sortPackageJson from 'sort-package-json';
 import defaultsDeep from 'lodash.defaultsdeep';
-import unique from 'lodash.uniq';
+import jsonFile from 'packagesmith.formats.json';
+import nameQuestion from 'packagesmith.questions.name';
 import { packageToClass } from './provision-mainfiles';
 import { readFileSync as readFile } from 'fs';
 import { resolve as resolvePath } from 'path';
+import { runProvisionerSet } from 'packagesmith';
+import sortPackageJson from 'sort-package-json';
+import unique from 'lodash.uniq';
+const jsonDefaultIndent = 2;
 const karmaConf = readFile(resolvePath(__dirname, '../assets/karma.conf.js'), 'utf8');
 export function provisionTestFiles() {
   return {
@@ -52,30 +53,30 @@ export function provisionTestFiles() {
             'strict-react',
             'strict/test',
           ]),
-        }, null, 2);
+        }, null, jsonDefaultIndent);
       },
     },
 
     'test/index.js': {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => contents || `
-import ${packageToClass(answers)} from '..';
+import ${ packageToClass(answers) } from '..';
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
 describe('Icon', () => {
   it('is compatible with React.Component', () => {
-    ${packageToClass(answers)}.should.be.a('function')
+    ${ packageToClass(answers) }.should.be.a('function')
       .and.respondTo('render');
   });
 
   it('renders a React element', () => {
-    React.isValidElement(<${packageToClass(answers)}/>).should.equal(true);
+    React.isValidElement(<${ packageToClass(answers) }/>).should.equal(true);
   });
 
   describe('Rendering', () => {
     const renderer = TestUtils.createRenderer();
     it('FILL THIS IN', () => {
-      renderer.render(<${packageToClass(answers)}/>, {});
+      renderer.render(<${ packageToClass(answers) }/>, {});
       renderer.getRenderOutput().should.deep.equal(
         <div/>
       );
@@ -90,5 +91,6 @@ describe('Icon', () => {
 }
 export default provisionTestFiles;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionTestFiles());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionTestFiles());
 }

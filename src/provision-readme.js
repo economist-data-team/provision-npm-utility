@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import nameQuestion from 'packagesmith.questions.name';
 import descriptionQuestion from 'packagesmith.questions.description';
-import { runProvisionerSet } from 'packagesmith';
+import nameQuestion from 'packagesmith.questions.name';
 import { packageToClass } from './provision-mainfiles';
+import { runProvisionerSet } from 'packagesmith';
 export function provisionReadme() {
   return {
     'README.md': {
@@ -11,17 +11,17 @@ export function provisionReadme() {
         descriptionQuestion(),
       ],
       contents: (contents, answers) => contents || `
-# ${packageToClass(answers)}
-> ${answers.description}
+# ${ packageToClass(answers) }
+> ${ answers.description }
 
 ## Usage
 
 Simply import the component for use in your project:
 
 \`\`\`js
-import ${packageToClass(answers)} from '${answers}';
+import ${ packageToClass(answers) } from '${ answers }';
 
-return <${packageToClass(answers)}/>;
+return <${ packageToClass(answers) }/>;
 \`\`\`
 
 For more examples on usage, see [\`src/example.es6\`]](./src/example.es6).
@@ -29,7 +29,7 @@ For more examples on usage, see [\`src/example.es6\`]](./src/example.es6).
 ## Install
 
 \`\`\`bash
-npm i -S ${answers}
+npm i -S ${ answers }
 \`\`\`
 
 ## Run tests
@@ -43,5 +43,6 @@ npm test
 }
 export default provisionReadme;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionReadme());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionReadme());
 }

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-import { runProvisionerSet } from 'packagesmith';
-import jsonFile from 'packagesmith.formats.json';
-import sortPackageJson from 'sort-package-json';
 import defaultsDeep from 'lodash.defaultsdeep';
-import unique from 'lodash.uniq';
 import getObjectPath from 'lodash.get';
+import jsonFile from 'packagesmith.formats.json';
+import { runProvisionerSet } from 'packagesmith';
+import sortPackageJson from 'sort-package-json';
+import unique from 'lodash.uniq';
 export function provisionEslintConfigStrict() {
   return {
     'package.json': {
@@ -42,5 +42,6 @@ export function provisionEslintConfigStrict() {
 }
 export default provisionEslintConfigStrict;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionEslintConfigStrict());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionEslintConfigStrict());
 }
