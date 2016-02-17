@@ -105,6 +105,7 @@ function addDocJs(packageJson) {
   return defaultsDeep({
     devDependencies: {
       'browserify': '^12.0.0',
+      'watchify': '^3.7.0',
     },
     config: {
       doc: {
