@@ -38,13 +38,9 @@ export function provisionReactComponent() {
     }),
     provisionNpmBabel({
       babelVersion: 5,
+      babelStage: 2,
+      babelRuntime: true,
       scriptName: 'build:js',
-      babelConfig: {
-        compact: false,
-        stage: 1,
-        sourceMaps: 'inline',
-        ignore: 'node_modules',
-      },
     }),
     provisionNpmSemanticRelease(),
     provisionDocgen(),
