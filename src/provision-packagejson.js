@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-import { runProvisionerSet } from 'packagesmith';
-import jsonFile from 'packagesmith.formats.json';
-import nameQuestion from 'packagesmith.questions.name';
-import descriptionQuestion from 'packagesmith.questions.description';
-import parsePackageJsonName from 'parse-packagejson-name';
-import sortPackageJson from 'sort-package-json';
 import defaultsDeep from 'lodash.defaultsdeep';
+import descriptionQuestion from 'packagesmith.questions.description';
+import jsonFile from 'packagesmith.formats.json';
 import kebabCase from 'lodash.kebabcase';
 import moduleJson from '../package.json';
+import nameQuestion from 'packagesmith.questions.name';
+import parsePackageJsonName from 'parse-packagejson-name';
+import { runProvisionerSet } from 'packagesmith';
+import sortPackageJson from 'sort-package-json';
 export function provisionPackageJson() {
   return {
     'package.json': {
@@ -17,16 +17,16 @@ export function provisionPackageJson() {
           ...parsePackageJsonName(answers.name || packageJson),
           scope: 'economist',
         };
-        const packageName = `component-${kebabCase(parsedPackageName.fullName.replace(/^component-/, ''))}`;
-        let bugsUrl = `http://github.com/economist-components/${packageName}/issues`;
+        const packageName = `component-${ kebabCase(parsedPackageName.fullName.replace(/^component-/, '')) }`;
+        let bugsUrl = `http://github.com/economist-components/${ packageName }/issues`;
         if (typeof packageJson.bugs === 'string') {
           bugsUrl = packageJson.bugs;
           Reflect.deleteProperty(packageJson, 'bugs');
         }
         return sortPackageJson(defaultsDeep({
-          name: `@${parsedPackageName.scope}/${packageName}`,
+          name: `@${ parsedPackageName.scope }/${ packageName }`,
           description: answers.description,
-          homepage: `http://github.com/economist-components/${packageName}`,
+          homepage: `http://github.com/economist-components/${ packageName }`,
           bugs: { url: bugsUrl },
           config: {
             ghooks: {
@@ -65,5 +65,6 @@ export function provisionPackageJson() {
 }
 export default provisionPackageJson;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionPackageJson());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionPackageJson());
 }
