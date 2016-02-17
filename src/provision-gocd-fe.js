@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-import { resolve as resolvePath } from 'path';
+import defaultsDeep from 'lodash.defaultsdeep';
+import jsonFile from 'packagesmith.formats.json';
 import { readFileSync as readFile } from 'fs';
+import { resolve as resolvePath } from 'path';
 import { runProvisionerSet } from 'packagesmith';
 import sortPackageJson from 'sort-package-json';
-import jsonFile from 'packagesmith.formats.json';
-import defaultsDeep from 'lodash.defaultsdeep';
 const buildShFile = readFile(resolvePath(__dirname, '../assets/build.sh'), 'utf8');
 export function provisionBuildSh() {
   return {
@@ -26,5 +26,6 @@ export function provisionBuildSh() {
 }
 export default provisionBuildSh;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionBuildSh());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionBuildSh());
 }

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import { runProvisionerSet } from 'packagesmith';
-import jsonFile from 'packagesmith.formats.json';
-import multiline from 'packagesmith.formats.multiline';
-import sortPackageJson from 'sort-package-json';
 import compose from 'lodash.compose';
 import defaultsDeep from 'lodash.defaultsdeep';
 import getObjectPath from 'lodash.get';
+import jsonFile from 'packagesmith.formats.json';
+import multiline from 'packagesmith.formats.multiline';
+import { runProvisionerSet } from 'packagesmith';
+import sortPackageJson from 'sort-package-json';
 function addDoc(packageJson) {
   return defaultsDeep({
     directories: {
@@ -148,5 +148,6 @@ export function provisionDocgen() {
 }
 export default provisionDocgen;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionDocgen());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionDocgen());
 }

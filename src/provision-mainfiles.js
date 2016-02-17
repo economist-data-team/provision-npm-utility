@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-import { runProvisionerSet } from 'packagesmith';
-import nameQuestion from 'packagesmith.questions.name';
-import jsonFile from 'packagesmith.formats.json';
-import sortPackageJson from 'sort-package-json';
-import parsePackageJsonName from 'parse-packagejson-name';
-import defaultsDeep from 'lodash.defaultsdeep';
-import capitalize from 'lodash.capitalize';
-import kebabCase from 'lodash.kebabcase';
 import camelCase from 'lodash.camelcase';
+import capitalize from 'lodash.capitalize';
+import defaultsDeep from 'lodash.defaultsdeep';
 import getObjectPath from 'lodash.get';
+import jsonFile from 'packagesmith.formats.json';
+import kebabCase from 'lodash.kebabcase';
+import nameQuestion from 'packagesmith.questions.name';
+import parsePackageJsonName from 'parse-packagejson-name';
+import { runProvisionerSet } from 'packagesmith';
+import sortPackageJson from 'sort-package-json';
 import unique from 'lodash.uniq';
 function packageToCss(name) {
   return kebabCase(parsePackageJsonName(name).fullName.replace(/component-/, ''));
@@ -36,7 +36,7 @@ export function provisionMainFiles() {
     'src/index.css': {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => (contents ||
-`.${packageToCss(answers)} {
+`.${ packageToCss(answers) } {
 }
   `),
     },
@@ -52,7 +52,7 @@ export function provisionMainFiles() {
       contents: (contents, answers) => (contents ||
 `import React from 'react';
 
-export default function ${packageToClass(answers)}() {
+export default function ${ packageToClass(answers) }() {
   return (
     <div>
     </div>
@@ -60,7 +60,7 @@ export default function ${packageToClass(answers)}() {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  ${packageToClass(answers)}.propTypes = {
+  ${ packageToClass(answers) }.propTypes = {
   };
 }
 `),
@@ -70,10 +70,10 @@ if (process.env.NODE_ENV !== 'production') {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => (contents ||
 `import React from 'react';
-import ${packageToClass(answers)} from './';
+import ${ packageToClass(answers) } from './';
 
 export default (
-  <${packageToClass(answers)}/>
+  <${ packageToClass(answers) }/>
 )
 `),
     },
@@ -81,5 +81,6 @@ export default (
 }
 export default provisionMainFiles;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionMainFiles());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionMainFiles());
 }

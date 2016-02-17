@@ -1,23 +1,24 @@
 #!/usr/bin/env node
+import { combineProvisionerSets, runProvisionerSet } from 'packagesmith';
 import { basename as baseNamePath } from 'path';
-import { runProvisionerSet, combineProvisionerSets } from 'packagesmith';
+import provisionDocgen from './provision-docgen';
 import provisionEditorConfig from 'provision-editorconfig';
+import provisionEslint from 'provision-eslint';
 import provisionGit from 'provision-git';
 import provisionGitIgnore from 'provision-gitignore';
-import provisionNpmBabel from 'provision-npm-babel';
-import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
-import provisionDocgen from './provision-docgen';
-import provisionEslint from 'provision-eslint';
 import provisionGocdFe from './provision-gocd-fe';
 import provisionLegacyRemoval from './provision-legacy-removal';
 import provisionMainFiles from './provision-mainfiles';
+import provisionNpmBabel from 'provision-npm-babel';
+import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
 import provisionPackageJson from './provision-packagejson';
 import provisionReactTestSuite from './provision-react-testsuite';
 import provisionReadme from './provision-readme';
 import provisionStylelintConfigStrict from './provision-stylelint-config-strict';
 const git = provisionGit();
-git['.git/config'].questions[0].default = (answers, dirname) => (
-  `git@github.com/economist-components/${answers.name || baseNamePath(dirname)}`
+const gitRepositoryQuestionIndex = 0;
+git['.git/config'].questions[gitRepositoryQuestionIndex].default = (answers, dirname) => (
+  `git@github.com/economist-components/${ answers.name || baseNamePath(dirname) }`
 );
 export function provisionReactComponent() {
   return combineProvisionerSets(
@@ -65,5 +66,6 @@ export function provisionReactComponent() {
 }
 export default provisionReactComponent;
 if (require.main === module) {
-  runProvisionerSet(process.argv[2] || process.cwd(), provisionReactComponent());
+  const directoryArgPosition = 2;
+  runProvisionerSet(process.argv[directoryArgPosition] || process.cwd(), provisionReactComponent());
 }
