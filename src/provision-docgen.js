@@ -92,6 +92,7 @@ function addDocHtml(packageJson) {
     scripts: {
       'doc:html': [
         'hbs',
+        '-D package.json',
         '-H @economist/doc-pack',
         '-o $npm_package_directories_site',
         '$npm_package_config_doc_html_files',
@@ -106,13 +107,19 @@ function addDocJs(packageJson) {
     devDependencies: {
       'browserify': '^12.0.0',
       'watchify': '^3.7.0',
+      'babelify': '^6.4.0',
     },
     config: {
       doc: {
         js: { // eslint-disable-line id-length
-          options: getObjectPath(packageJson, 'config.doc.js.options', '-d -r react -r react-dom'),
+          options: getObjectPath(packageJson, 'config.doc.js.options',
+            '-r react -r react-dom -r ./src/example.js:example'
+          ),
         },
       },
+    },
+    browserify: {
+      transform: [ 'babelify' ],
     },
     scripts: {
       'doc:js': 'browserify ' +

@@ -38,6 +38,7 @@ export function provisionPackageJson() {
             'build:css': 'cp $npm_package_directories_src/*.css $npm_package_directories_lib',
             start: 'npm run watch',
             watch: 'npm-run-all --parallel watch:*',
+            'prewatch:serve': 'while [ ! -f site/index.html ]; do sleep 1; done',
             'watch:serve': 'live-server site/ --wait 500',
             prepublish: 'npm run build',
             pretest: 'npm run lint && npm run doc:js',
