@@ -14,7 +14,7 @@ import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
 import provisionPackageJson from './provision-packagejson';
 import provisionReactTestSuite from './provision-react-testsuite';
 import provisionReadme from './provision-readme';
-import provisionStylelintConfigStrict from './provision-stylelint-config-strict';
+import provisionStylelint from 'provision-stylelint';
 const git = provisionGit();
 const gitRepositoryQuestionIndex = 0;
 git['.git/config'].questions[gitRepositoryQuestionIndex].default = (answers, dirname) => (
@@ -57,7 +57,10 @@ export function provisionReactComponent() {
     provisionPackageJson(),
     provisionReactTestSuite(),
     provisionReadme(),
-    provisionStylelintConfigStrict(),
+    provisionStylelint({
+      presets: 'strict',
+      scriptName: 'lint:css',
+    }),
   );
 }
 export default provisionReactComponent;
