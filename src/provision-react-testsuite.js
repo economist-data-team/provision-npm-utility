@@ -61,9 +61,11 @@ export function provisionTestFiles() {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => contents || `
 import ${ packageToClass(answers) } from '..';
+import chai from 'chai';
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
-describe('Icon', () => {
+chai.should();
+describe('${ packageToClass(answers) }', () => {
   it('is compatible with React.Component', () => {
     ${ packageToClass(answers) }.should.be.a('function')
       .and.respondTo('render');
