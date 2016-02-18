@@ -65,8 +65,8 @@ function addDocCss(packageJson) {
       'doc:css': [
         'postcss',
         '$npm_package_config_doc_css_options',
-        '$npm_package_examplestyle',
         '-o $npm_package_directories_site/bundle.css',
+        '$npm_package_directories_src/example.css',
       ].join(' '),
       'watch:doc:css': 'npm run doc:css -- --watch',
     },
