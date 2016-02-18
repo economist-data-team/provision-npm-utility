@@ -65,7 +65,7 @@ import chai from 'chai';
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
 chai.should();
-describe('Icon', () => {
+describe('${ packageToClass(answers) }', () => {
   it('is compatible with React.Component', () => {
     ${ packageToClass(answers) }.should.be.a('function')
       .and.respondTo('render');
