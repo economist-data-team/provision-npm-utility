@@ -51,6 +51,7 @@ export function provisionPackageJson() {
             'access:infographics': 'npm access grant read-only economist:infographics $npm_package_name',
             'access:sudo': 'npm access grant read-write economist:read-write-all $npm_package_name',
             build: 'npm-run-all --parallel build:*',
+            'semantic-release': 'semantic-release pre || exit 0; npm publish && semantic-release post',
             provision: 'provision-react-component',
           },
           devDependencies: {
