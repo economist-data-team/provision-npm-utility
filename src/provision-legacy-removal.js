@@ -49,7 +49,7 @@ export function provisionLegacyRemoval() {
           '!testbundle.js',
         ]);
         const build = getObjectPath(packageJson, 'scripts.build');
-        if (build && build !== 'npm-run-all --parallel build:*') {
+        if (build && build !== 'npm-run-all --parallel build:*' && build !== 'npm-assets .') {
           Reflect.deleteProperty(packageJson.scripts, 'build');
           packageJson.scripts['build:LEGACY-RENAME-THIS'] = build;
         }
