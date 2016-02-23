@@ -41,7 +41,7 @@ export function provisionPackageJson() {
             'prewatch:serve': 'while [ ! -f site/index.html ]; do sleep 1; done',
             'watch:serve': 'live-server site/ --wait 500',
             prepublish: 'npm run build',
-            pretest: 'npm run lint && npm run doc:js',
+            pretest: 'npm run lint && npm run doc',
             lint: 'npm-run-all --parallel lint:*',
             postpublish: 'npm run access',
             access: 'npm-run-all --parallel access:*',
