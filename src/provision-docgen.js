@@ -12,8 +12,8 @@ function addDoc(packageJson) {
       site: 'site',
     },
     devDependencies: {
-      'npm-run-all': '^1.3.3',
-      'git-directory-deploy': '^1.3.0',
+      'npm-run-all': '^1.5.1',
+      'git-directory-deploy': '^1.4.0',
     },
     scripts: {
       'prewatch:doc': 'npm run predoc',
@@ -31,7 +31,7 @@ function addDoc(packageJson) {
 function addDocAssets(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      'npm-assets': '^0.1.0',
+      'npm-assets': '^0.1.1',
     },
     scripts: {
       'doc:assets': 'npm-assets $npm_package_directories_site',
@@ -43,11 +43,11 @@ function addDocAssets(packageJson) {
 function addDocCss(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      'postcss-import': '^7.1.3',
-      'postcss-url': '^5.0.2',
-      'postcss-cssnext': '^2.3.0',
-      'postcss-reporter': '^1.3.0',
-      'postcss-cli': '^2.3.3',
+      'postcss-import': '^8.0.2',
+      'postcss-url': '^5.1.1',
+      'postcss-cssnext': '^2.4.0',
+      'postcss-reporter': '^1.3.3',
+      'postcss-cli': '^2.5.1',
     },
     config: {
       doc: {
@@ -76,7 +76,7 @@ function addDocCss(packageJson) {
 function addDocHtml(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      '@economist/doc-pack': '^1.0.0',
+      '@economist/doc-pack': '^1.0.6',
       'hbs-cli': '^1.0.0',
     },
     config: {
@@ -105,7 +105,7 @@ function addDocHtml(packageJson) {
 function addDocJs(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      'browserify': '^12.0.0',
+      'browserify': '^13.0.0',
       'watchify': '^3.7.0',
       'babelify': '^6.4.0',
     },

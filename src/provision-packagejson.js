@@ -57,8 +57,8 @@ export function provisionPackageJson() {
           devDependencies: {
             '@economist/provision-react-component': moduleJson.version,
             'eslint-plugin-filenames': '^0.2.0',
-            'eslint-plugin-react': '^3.11.2',
-            'live-server': '^0.9.0',
+            'eslint-plugin-react': '^3.16.1',
+            'live-server': '^0.9.2',
           },
         }, packageJson));
       }),
