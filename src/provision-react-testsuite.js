@@ -34,6 +34,7 @@ export function provisionTestFiles() {
           'chai-spies': '^0.7.1',
           'karma': '^0.13.5',
           'karma-mocha': '^0.2.1',
+          'karma-mocha-reporter': '^1.2.0',
           'karma-sauce-launcher': '^0.3.0',
         },
         scripts: {
