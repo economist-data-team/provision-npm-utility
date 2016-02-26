@@ -13,7 +13,7 @@ function configureBuildValue() {
 }
 module.exports = function configureKarma(config) {
   const localBrowsers = [
-    'Chrome',
+    'PhantomJS',
   ];
   const sauceLabsBrowsers = {
     SauceChromeLatest: {

@@ -35,6 +35,8 @@ export function provisionTestFiles() {
           'karma': '^0.13.21',
           'karma-mocha': '^0.2.2',
           'karma-mocha-reporter': '^1.2.0',
+          'karma-phantomjs-launcher': '^1.0.0',
+          'phantomjs-prebuilt': '^2.1.4',
           'karma-sauce-launcher': '^0.3.0',
         },
         scripts: {
