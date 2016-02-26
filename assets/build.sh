@@ -35,6 +35,7 @@ exec docker run \
     "${DOCKER_IMAGE}" \
     /bin/sh -cx "\
         trap 'chmod 777 node_modules -R' EXIT &&\
+        apt-get update && apt-get install git -y
         cd /code &&\
         umask 000 &&\
         printf \"@economist:registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=%s\n\" \"$NPM_TOKEN\" > ~/.npmrc &&\
