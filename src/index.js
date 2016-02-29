@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { combineProvisionerSets, runProvisionerSet } from 'packagesmith';
 import { basename as baseNamePath } from 'path';
+import packageVersions from '../package-versions';
 import provisionDocgen from './provision-docgen';
 import provisionEditorConfig from 'provision-editorconfig';
 import provisionEslint from 'provision-eslint';
@@ -46,8 +47,8 @@ export function provisionReactComponent() {
     provisionDocgen(),
     provisionEslint({
       presets: {
-        'strict': '^8.2.0',
-        'strict-react': '^6.0.0',
+        'strict': packageVersions['eslint-config-strict'],
+        'strict-react': packageVersions['eslint-config-strict-react'],
       },
       scriptName: 'lint:js',
     }),

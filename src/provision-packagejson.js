@@ -5,6 +5,7 @@ import jsonFile from 'packagesmith.formats.json';
 import kebabCase from 'lodash.kebabcase';
 import moduleJson from '../package.json';
 import nameQuestion from 'packagesmith.questions.name';
+import packageVersions from '../package-versions';
 import parsePackageJsonName from 'parse-packagejson-name';
 import { runProvisionerSet } from 'packagesmith';
 import sortPackageJson from 'sort-package-json';
@@ -25,6 +26,7 @@ export function provisionPackageJson() {
         }
         return sortPackageJson(defaultsDeep({
           name: `@${ parsedPackageName.scope }/${ packageName }`,
+          license: 'MIT',
           description: answers.description,
           homepage: `http://github.com/economist-components/${ packageName }`,
           bugs: { url: bugsUrl },
@@ -56,9 +58,9 @@ export function provisionPackageJson() {
           },
           devDependencies: {
             '@economist/provision-react-component': moduleJson.version,
-            'eslint-plugin-filenames': '^0.2.0',
-            'eslint-plugin-react': '^3.16.1',
-            'live-server': '^0.9.2',
+            'eslint-plugin-filenames': packageVersions['eslint-plugin-filenames'],
+            'eslint-plugin-react': packageVersions['eslint-plugin-react'],
+            'live-server': packageVersions['live-server'],
           },
         }, packageJson));
       }),

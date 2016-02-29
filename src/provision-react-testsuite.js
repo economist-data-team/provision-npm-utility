@@ -3,6 +3,7 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import jsonFile from 'packagesmith.formats.json';
 import nameQuestion from 'packagesmith.questions.name';
 import { packageToClass } from './provision-mainfiles';
+import packageVersions from '../package-versions';
 import { readFileSync as readFile } from 'fs';
 import { resolve as resolvePath } from 'path';
 import { runProvisionerSet } from 'packagesmith';
@@ -24,20 +25,20 @@ export function provisionTestFiles() {
           test: 'test',
         },
         dependencies: {
-          'react': '^0.14.3',
+          'react': packageVersions.react,
         },
         devDependencies: {
-          'react-addons-test-utils': '^0.14.7',
-          'react-dom': '^0.14.7',
-          'mocha': '^2.4.5',
-          'chai': '^3.5.0',
-          'chai-spies': '^0.7.1',
-          'karma': '^0.13.21',
-          'karma-mocha': '^0.2.2',
-          'karma-mocha-reporter': '^1.2.0',
-          'karma-phantomjs-launcher': '^1.0.0',
-          'phantomjs-prebuilt': '^2.1.4',
-          'karma-sauce-launcher': '^0.3.0',
+          'react-addons-test-utils': packageVersions['react-addons-test-utils'],
+          'react-dom': packageVersions['react-dom'],
+          'mocha': packageVersions.mocha,
+          'chai': packageVersions.chai,
+          'chai-spies': packageVersions['chai-spies'],
+          'karma': packageVersions.karma,
+          'karma-mocha': packageVersions['karma-mocha'],
+          'karma-mocha-reporter': packageVersions['karma-mocha-reporter'],
+          'karma-phantomjs-launcher': packageVersions['karma-phantomjs-launcher'],
+          'phantomjs-prebuilt': packageVersions['phantomjs-prebuilt'],
+          'karma-sauce-launcher': packageVersions['karma-sauce-launcher'],
         },
         scripts: {
           test: 'karma start',

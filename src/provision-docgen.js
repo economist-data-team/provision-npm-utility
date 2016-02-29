@@ -4,6 +4,7 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import getObjectPath from 'lodash.get';
 import jsonFile from 'packagesmith.formats.json';
 import multiline from 'packagesmith.formats.multiline';
+import packageVersions from '../package-versions';
 import { runProvisionerSet } from 'packagesmith';
 import sortPackageJson from 'sort-package-json';
 function addDoc(packageJson) {
@@ -12,8 +13,8 @@ function addDoc(packageJson) {
       site: 'site',
     },
     devDependencies: {
-      'npm-run-all': '^1.5.1',
-      'git-directory-deploy': '^1.4.0',
+      'npm-run-all': packageVersions['npm-run-all'],
+      'git-directory-deploy': packageVersions['git-directory-deploy'],
     },
     scripts: {
       'prewatch:doc': 'npm run predoc',
@@ -31,7 +32,7 @@ function addDoc(packageJson) {
 function addDocAssets(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      'npm-assets': '^0.1.1',
+      'npm-assets': packageVersions['npm-assets'],
     },
     scripts: {
       'doc:assets': 'npm-assets $npm_package_directories_site',
@@ -43,11 +44,11 @@ function addDocAssets(packageJson) {
 function addDocCss(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      'postcss-import': '^8.0.2',
-      'postcss-url': '^5.1.1',
-      'postcss-cssnext': '^2.4.0',
-      'postcss-reporter': '^1.3.3',
-      'postcss-cli': '^2.5.1',
+      'postcss-import': packageVersions['postcss-import'],
+      'postcss-url': packageVersions['postcss-url'],
+      'postcss-cssnext': packageVersions['postcss-cssnext'],
+      'postcss-reporter': packageVersions['postcss-reporter'],
+      'postcss-cli': packageVersions['postcss-cli'],
     },
     config: {
       doc: {
@@ -76,8 +77,8 @@ function addDocCss(packageJson) {
 function addDocHtml(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      '@economist/doc-pack': '^1.0.6',
-      'hbs-cli': '^1.0.0',
+      '@economist/doc-pack': packageVersions['@economist/doc-pack'],
+      'hbs-cli': packageVersions['hbs-cli'],
     },
     config: {
       doc: {
@@ -105,9 +106,9 @@ function addDocHtml(packageJson) {
 function addDocJs(packageJson) {
   return defaultsDeep({
     devDependencies: {
-      'browserify': '^13.0.0',
-      'watchify': '^3.7.0',
-      'babelify': '^6.4.0',
+      'browserify': packageVersions.browserify,
+      'watchify': packageVersions.watchify,
+      'babelify': packageVersions.babelify,
     },
     config: {
       doc: {

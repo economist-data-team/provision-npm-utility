@@ -7,9 +7,12 @@ import jsonFile from 'packagesmith.formats.json';
 import kebabCase from 'lodash.kebabcase';
 import nameQuestion from 'packagesmith.questions.name';
 import parsePackageJsonName from 'parse-packagejson-name';
+import { readFileSync as readFile } from 'fs';
+import { resolve as resolvePath } from 'path';
 import { runProvisionerSet } from 'packagesmith';
 import sortPackageJson from 'sort-package-json';
 import unique from 'lodash.uniq';
+const license = readFile(resolvePath(__dirname, '../LICENSE'), 'utf8');
 function packageToCss(name) {
   return kebabCase(parsePackageJsonName(name).fullName.replace(/component-/, ''));
 }
@@ -18,6 +21,9 @@ export function packageToClass(name) {
 }
 export function provisionMainFiles() {
   return {
+    'LICENSE': {
+      contents: () => license,
+    },
 
     'package.json': {
       contents: jsonFile((packageJson) => sortPackageJson(defaultsDeep({
