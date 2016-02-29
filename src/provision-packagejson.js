@@ -26,6 +26,7 @@ export function provisionPackageJson() {
         }
         return sortPackageJson(defaultsDeep({
           name: `@${ parsedPackageName.scope }/${ packageName }`,
+          license: 'MIT',
           description: answers.description,
           homepage: `http://github.com/economist-components/${ packageName }`,
           bugs: { url: bugsUrl },
