@@ -4,7 +4,7 @@
   "description": "Rapidly provision React components",
   "homepage": "http://economist-components.github.io/provision-react-component",
   "bugs": "http://github.com/economist-components/provision-react-component/issues",
-  "license": "LicenseRef-LICENSE",
+  "license": "MIT",
   "author": "The Economist Editorial (https://economist.com)",
   "files": [
     "assets/*",
