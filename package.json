@@ -8,7 +8,8 @@
   "author": "The Economist Editorial (https://economist.com)",
   "files": [
     "assets/*",
-    "lib/*.js"
+    "lib/*.js",
+    "package-versions.json"
   ],
   "main": "lib/index.js",
   "bin": {
