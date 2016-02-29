@@ -19,7 +19,7 @@ export function provisionPackageJson() {
           scope: 'economist',
         };
         const packageName = `component-${ kebabCase(parsedPackageName.fullName.replace(/^component-/, '')) }`;
-        let bugsUrl = `http://github.com/economist-components/${ packageName }/issues`;
+        let bugsUrl = `https://github.com/economist-components/${ packageName }/issues`;
         if (typeof packageJson.bugs === 'string') {
           bugsUrl = packageJson.bugs;
           Reflect.deleteProperty(packageJson, 'bugs');
@@ -28,7 +28,7 @@ export function provisionPackageJson() {
           name: `@${ parsedPackageName.scope }/${ packageName }`,
           license: 'MIT',
           description: answers.description,
-          homepage: `http://github.com/economist-components/${ packageName }`,
+          homepage: `https://github.com/economist-components/${ packageName }`,
           bugs: { url: bugsUrl },
           config: {
             ghooks: {
