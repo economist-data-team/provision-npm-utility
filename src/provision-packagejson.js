@@ -45,6 +45,7 @@ export function provisionPackageJson() {
             prepublish: 'npm run build',
             pretest: 'npm run lint && npm run doc',
             lint: 'npm-run-all --parallel lint:*',
+            'lint:js': 'eslint --ignore-path .gitignore .',
             postpublish: 'npm run access',
             access: 'npm-run-all --parallel access:*',
             'access:yld': 'npm access grant read-only economist:yld $npm_package_name',
