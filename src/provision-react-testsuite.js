@@ -39,6 +39,7 @@ export function provisionTestFiles() {
           'karma-phantomjs-launcher': packageVersions['karma-phantomjs-launcher'],
           'phantomjs-prebuilt': packageVersions['phantomjs-prebuilt'],
           'karma-sauce-launcher': packageVersions['karma-sauce-launcher'],
+          'babel-polyfill': packageVersions['babel-polyfill'],
         },
         scripts: {
           test: 'karma start',
@@ -64,6 +65,7 @@ export function provisionTestFiles() {
     'test/index.js': {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => contents || `
+import 'babel-polyfill';
 import ${ packageToClass(answers) } from '..';
 import chai from 'chai';
 import React from 'react/addons';

@@ -40,7 +40,6 @@ export function provisionReactComponent() {
     provisionNpmBabel({
       babelVersion: 5,
       babelStage: 2,
-      babelRuntime: true,
       scriptName: 'build:js',
     }),
     provisionNpmSemanticRelease(),
