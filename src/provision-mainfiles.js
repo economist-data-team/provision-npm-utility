@@ -75,7 +75,8 @@ if (process.env.NODE_ENV !== 'production') {
     'src/example.js': {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => (contents ||
-`import React from 'react';
+`import 'babel-polyfill';
+import React from 'react';
 import ${ packageToClass(answers) } from './';
 
 export default (
