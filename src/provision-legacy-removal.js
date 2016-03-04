@@ -12,6 +12,9 @@ export function provisionLegacyRemoval() {
       contents: jsonFile((packageJson) => {
         Reflect.deleteProperty(packageJson, 'component-devserver');
         Reflect.deleteProperty(packageJson, 'devpack-doc');
+        if (packageJson['pre-commit']) {
+          Reflect.deleteProperty(packageJson, 'pre-commit');
+        }
         if (packageJson.scripts) {
           Reflect.deleteProperty(packageJson.scripts, 'preinstall');
           Reflect.deleteProperty(packageJson.scripts, 'postinstall');
@@ -35,6 +38,17 @@ export function provisionLegacyRemoval() {
           Reflect.deleteProperty(packageJson.devDependencies, 'react');
           Reflect.deleteProperty(packageJson.devDependencies, 'chai-things');
           Reflect.deleteProperty(packageJson.devDependencies, 'cssnext');
+          Reflect.deleteProperty(packageJson.devDependencies, 'babel-runtime');
+          Reflect.deleteProperty(packageJson.devDependencies, 'babel-loader');
+          Reflect.deleteProperty(packageJson.devDependencies, 'browser-sync');
+          Reflect.deleteProperty(packageJson.devDependencies, 'karma-chai');
+          Reflect.deleteProperty(packageJson.devDependencies, 'karma-chrome-launcher');
+          Reflect.deleteProperty(packageJson.devDependencies, 'pre-commit');
+          Reflect.deleteProperty(packageJson.devDependencies, 'react-addons-test-utils');
+          Reflect.deleteProperty(packageJson.devDependencies, 'react-dom');
+        }
+        if (packageJson.dependencies) {
+          Reflect.deleteProperty(packageJson.dependencies, 'babel-runtime');
         }
         if (packageJson.config) {
           Reflect.deleteProperty(packageJson.config, 'lint_opts');
