@@ -55,13 +55,13 @@ export function provisionLegacyRemoval() {
           Reflect.deleteProperty(packageJson.config, 'testbundle_opts');
           Reflect.deleteProperty(packageJson.config, 'ghpages_files');
         }
-        packageJson.files = without(packageJson.files || [], [
+        packageJson.files = without(packageJson.files || [],
           '*.js',
           '*.es6',
           '*.css',
           '!karma.conf.js',
           '!testbundle.js',
-        ]);
+        );
         const build = getObjectPath(packageJson, 'scripts.build');
         if (build && build !== 'npm-run-all --parallel build:*' && build !== 'npm-assets .') {
           Reflect.deleteProperty(packageJson.scripts, 'build');
