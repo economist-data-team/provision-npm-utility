@@ -37,7 +37,7 @@ exec docker run \
         trap 'chmod 777 node_modules -R' EXIT &&\
         cd /code &&\
         umask 000 &&\
-        printf \"@economist:registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=%s\n\" \"$NPM_TOKEN\" > ~/.npmrc &&\
+        printf \"@semantic-release:registry=https://registry.npmjs.org/\n@economist:registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=%s\n\" \"$NPM_TOKEN\" > ~/.npmrc &&\
         { \
           [ \"$WITH_SINOPIA\" != \"true\" ] || \
           (
