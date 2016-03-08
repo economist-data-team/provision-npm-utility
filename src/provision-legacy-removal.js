@@ -4,6 +4,7 @@ import jsonFile from 'packagesmith.formats.json';
 import { runProvisionerSet } from 'packagesmith';
 import sortPackageJson from 'sort-package-json';
 import without from 'lodash.without';
+
 export function provisionLegacyRemoval() {
   return {
 
@@ -12,9 +13,8 @@ export function provisionLegacyRemoval() {
       contents: jsonFile((packageJson) => {
         Reflect.deleteProperty(packageJson, 'component-devserver');
         Reflect.deleteProperty(packageJson, 'devpack-doc');
-        if (packageJson['pre-commit']) {
-          Reflect.deleteProperty(packageJson, 'pre-commit');
-        }
+        Reflect.deleteProperty(packageJson, 'pre-commit');
+        Reflect.deleteProperty(packageJson.dependencies, 'watch');
         if (packageJson.scripts) {
           Reflect.deleteProperty(packageJson.scripts, 'preinstall');
           Reflect.deleteProperty(packageJson.scripts, 'postinstall');
@@ -46,6 +46,7 @@ export function provisionLegacyRemoval() {
           Reflect.deleteProperty(packageJson.devDependencies, 'pre-commit');
           Reflect.deleteProperty(packageJson.devDependencies, 'react-addons-test-utils');
           Reflect.deleteProperty(packageJson.devDependencies, 'react-dom');
+          Reflect.deleteProperty(packageJson.devDependencies, 'npm-watch');
         }
         if (packageJson.dependencies) {
           Reflect.deleteProperty(packageJson.dependencies, 'babel-runtime');
