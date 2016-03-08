@@ -55,6 +55,12 @@ export function provisionLegacyRemoval() {
           Reflect.deleteProperty(packageJson.config, 'testbundle_opts');
           Reflect.deleteProperty(packageJson.config, 'ghpages_files');
         }
+        if (packageJson.babel && packageJson.babel.optional) {
+          packageJson.babel.optional = without(packageJson.babel.optional, 'runtime');
+          if (packageJson.babel.optional.length === 0) {
+            Reflect.deleteProperty(packageJson.babel, 'optional');
+          }
+        }
         packageJson.files = without(packageJson.files || [],
           '*.js',
           '*.es6',
