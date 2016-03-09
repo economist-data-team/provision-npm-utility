@@ -14,7 +14,7 @@ export function provisionLegacyRemoval() {
         Reflect.deleteProperty(packageJson, 'component-devserver');
         Reflect.deleteProperty(packageJson, 'devpack-doc');
         Reflect.deleteProperty(packageJson, 'pre-commit');
-        Reflect.deleteProperty(packageJson.dependencies, 'watch');
+        Reflect.deleteProperty(packageJson, 'watch');
         if (packageJson.scripts) {
           Reflect.deleteProperty(packageJson.scripts, 'preinstall');
           Reflect.deleteProperty(packageJson.scripts, 'postinstall');
