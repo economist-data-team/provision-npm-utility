@@ -10,7 +10,8 @@ export function provisionLegacyRemoval() {
 
     'package.json': {
       after: 'npm prune',
-      contents: jsonFile((packageJson) => {
+      // This is a big function, we could split it up but its pretty readable.
+      contents: jsonFile((packageJson) => { // eslint-disable-line max-statements
         Reflect.deleteProperty(packageJson, 'component-devserver');
         Reflect.deleteProperty(packageJson, 'devpack-doc');
         Reflect.deleteProperty(packageJson, 'pre-commit');
