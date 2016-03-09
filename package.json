@@ -25,11 +25,8 @@
   },
   "scripts": {
     "access": "npm-run-all --parallel access:*",
-    "access:editorial": "npm access grant read-only economist:economist-editorial $npm_package_name",
-    "access:global-logic": "npm access grant read-only economist:global-logic $npm_package_name",
-    "access:infographics": "npm access grant read-only economist:infographics $npm_package_name",
+    "access:public": "npm access public $npm_package_name",
     "access:sudo": "npm access grant read-write economist:read-write-all $npm_package_name",
-    "access:yld": "npm access grant read-only economist:yld $npm_package_name",
     "lint": "eslint $npm_package_directories_src",
     "pages": "echo stub for build.sh",
     "prepublish": "babel $npm_package_directories_src -d $npm_package_directories_lib",
