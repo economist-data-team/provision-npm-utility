@@ -66,7 +66,7 @@ export function provisionTestFiles() {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => contents || `
 import 'babel-polyfill';
-import ${ packageToClass(answers) } from '..';
+import ${ packageToClass(answers) } from '../src';
 import chai from 'chai';
 import React from 'react/addons';
 const TestUtils = React.addons.TestUtils;
