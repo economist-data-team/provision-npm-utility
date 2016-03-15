@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+import { packageToCamel, packageToClass, packageToCss } from './package-names';
 import defaultsDeep from 'lodash.defaultsdeep';
 import jsonFile from 'packagesmith.formats.json';
 import nameQuestion from 'packagesmith.questions.name';
-import { packageToClass } from './provision-mainfiles';
 import packageVersions from '../package-versions';
 import { readFileSync as readFile } from 'fs';
 import { resolve as resolvePath } from 'path';
@@ -37,6 +37,12 @@ export function provisionTestFiles() {
           'karma-mocha': packageVersions['karma-mocha'],
           'karma-mocha-reporter': packageVersions['karma-mocha-reporter'],
           'karma-phantomjs-launcher': packageVersions['karma-phantomjs-launcher'],
+          'karma-browserify': packageVersions['karma-browserify'],
+          'karma-coverage': packageVersions['karma-coverage'],
+          'browserify-istanbul': packageVersions['browserify-istanbul'],
+          'chai-enzyme': packageVersions['chai-enzyme'],
+          'enzyme': packageVersions.enzyme,
+          'isparta': packageVersions.isparta,
           'phantomjs-prebuilt': packageVersions['phantomjs-prebuilt'],
           'karma-sauce-launcher': packageVersions['karma-sauce-launcher'],
           'babel-polyfill': packageVersions['babel-polyfill'],
@@ -64,36 +70,42 @@ export function provisionTestFiles() {
 
     'test/index.js': {
       questions: [ nameQuestion() ],
-      contents: (contents, answers) => contents || `
-import 'babel-polyfill';
+      contents: (contents, answers) => contents ||
+`import 'babel-polyfill';
 import ${ packageToClass(answers) } from '../src';
+import React from 'react';
 import chai from 'chai';
-import React from 'react/addons';
-const TestUtils = React.addons.TestUtils;
-chai.should();
+import chaiEnzyme from 'chai-enzyme';
+import { mount } from 'enzyme';
+chai.use(chaiEnzyme()).should();
 describe('${ packageToClass(answers) }', () => {
-  it('is compatible with React.Component', () => {
-    ${ packageToClass(answers) }.should.be.a('function')
-      .and.respondTo('render');
-  });
 
   it('renders a React element', () => {
-    React.isValidElement(<${ packageToClass(answers) }/>).should.equal(true);
+    React.isValidElement(<${ packageToClass(answers) } />).should.equal(true);
   });
 
   describe('Rendering', () => {
-    const renderer = TestUtils.createRenderer();
-    it('FILL THIS IN', () => {
-      renderer.render(<${ packageToClass(answers) }/>, {});
-      renderer.getRenderOutput().should.deep.equal(
-        <div/>
-      );
+    let rendered = null;
+    let ${ packageToCamel(answers) } = null;
+    beforeEach(() => {
+      rendered = mount(<${ packageToClass(answers) } />);
+      ${ packageToCamel(answers) } = rendered.find('${ packageToCss(answers) }');
+    });
+
+    it('renders a top level div.${ packageToCss(answers) }', () => {
+      ${ packageToCamel(answers) }.should.have.tagName('div');
+      ${ packageToCamel(answers) }.should.have.className('${ packageToCss(answers) }');
+    });
+
+    xit('renders <FILL THIS IN>', () => {
+      ${ packageToCamel(answers) }.should.have.exactly(1).descendents('.the-descendent-class');
+      ${ packageToCamel(answers) }.find('.the-descendent-class').should.have.tagName('TAG');
     });
 
   });
 
 });
-  `,
+`,
     },
   };
 }
