@@ -1,24 +1,15 @@
 #!/usr/bin/env node
-import camelCase from 'lodash.camelcase';
-import capitalize from 'lodash.capitalize';
+import { packageToClass, packageToCss } from './package-names';
 import defaultsDeep from 'lodash.defaultsdeep';
 import getObjectPath from 'lodash.get';
 import jsonFile from 'packagesmith.formats.json';
-import kebabCase from 'lodash.kebabcase';
 import nameQuestion from 'packagesmith.questions.name';
-import parsePackageJsonName from 'parse-packagejson-name';
 import { readFileSync as readFile } from 'fs';
 import { resolve as resolvePath } from 'path';
 import { runProvisionerSet } from 'packagesmith';
 import sortPackageJson from 'sort-package-json';
 import unique from 'lodash.uniq';
 const license = readFile(resolvePath(__dirname, '../LICENSE'), 'utf8');
-function packageToCss(name) {
-  return kebabCase(parsePackageJsonName(name).fullName.replace(/component-/, ''));
-}
-export function packageToClass(name) {
-  return capitalize(camelCase(packageToCss(name)));
-}
 export function provisionMainFiles() {
   return {
     'LICENSE': {
@@ -60,7 +51,7 @@ export function provisionMainFiles() {
 
 export default function ${ packageToClass(answers) }() {
   return (
-    <div>
+    <div className="${ packageToCss(answers) }">
     </div>
   );
 }

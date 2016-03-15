@@ -113,9 +113,14 @@ function addDocJs(packageJson) {
     config: {
       doc: {
         js: { // eslint-disable-line id-length
-          options: getObjectPath(packageJson, 'config.doc.js.options',
-            '-r react -r react-dom -r ./src/example.js:example'
-          ),
+          options: [
+            '-d',
+            '-x react/lib/ReactContext',
+            '-x react/lib/ExecutionEnvironment',
+            '-r react',
+            '-r react-dom',
+            '-r ./src/example.js:example',
+          ].join(' '),
         },
       },
     },

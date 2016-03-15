@@ -41,6 +41,10 @@ export function provisionReactComponent() {
       babelVersion: 5,
       babelStage: 2,
       scriptName: 'build:js',
+      babelConfig: {
+        compact: false,
+        ignore: 'node_modules',
+      },
     }),
     provisionNpmSemanticRelease(),
     provisionDocgen(),

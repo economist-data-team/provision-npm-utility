@@ -46,6 +46,7 @@ export function provisionPackageJson() {
             pretest: 'npm run lint && npm run doc',
             lint: 'npm-run-all --parallel lint:*',
             'lint:js': 'eslint --ignore-path .gitignore .',
+            'build:js': 'babel $npm_package_directories_src -d $npm_package_directories_lib --source-maps inline',
             postpublish: 'npm run access',
             access: 'npm-run-all --parallel access:*',
             'access:public': 'npm access public $npm_package_name',
