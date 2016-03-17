@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import descriptionQuestion from 'packagesmith.questions.description';
 import nameQuestion from 'packagesmith.questions.name';
-import { packageToClass } from './provision-mainfiles';
+import { packageToClass } from './package-names';
 import { runProvisionerSet } from 'packagesmith';
 export function provisionReadme() {
   return {
