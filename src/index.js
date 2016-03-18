@@ -19,7 +19,7 @@ import provisionStylelint from 'provision-stylelint';
 const git = provisionGit();
 const gitRepositoryQuestionIndex = 0;
 git['.git/config'].questions[gitRepositoryQuestionIndex].default = (answers, dirname) => (
-  `git@github.com/economist-components:${ answers.name || baseNamePath(dirname) }.git`
+  `git@github.com:economist-components/${ answers.name || baseNamePath(dirname) }.git`
 );
 export function provisionReactComponent() {
   return combineProvisionerSets(
