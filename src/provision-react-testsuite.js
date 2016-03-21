@@ -89,7 +89,7 @@ describe('${ packageToClass(answers) }', () => {
     let ${ packageToCamel(answers) } = null;
     beforeEach(() => {
       rendered = mount(<${ packageToClass(answers) } />);
-      ${ packageToCamel(answers) } = rendered.find('${ packageToCss(answers) }');
+      ${ packageToCamel(answers) } = rendered.find('.${ packageToCss(answers) }');
     });
 
     it('renders a top level div.${ packageToCss(answers) }', () => {
