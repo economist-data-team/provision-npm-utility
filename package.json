@@ -101,6 +101,6 @@
     "ghooks": "^1.0.1",
     "npm-run-all": "^1.6.0",
     "semantic-release": "^4.3.5",
-    "validate-commit-msg": "^2.4.1"
+    "validate-commit-msg": "^2.5.0"
   }
 }
