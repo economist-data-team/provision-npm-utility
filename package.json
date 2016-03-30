@@ -71,7 +71,7 @@
     "lodash.get": "^4.1.2",
     "lodash.kebabcase": "^4.0.0",
     "lodash.uniq": "^4.2.0",
-    "lodash.without": "^4.1.1",
+    "lodash.without": "^4.1.2",
     "packagesmith": "^1.1.2",
     "packagesmith.formats.json": "^1.0.1",
     "packagesmith.formats.multiline": "^1.0.1",
