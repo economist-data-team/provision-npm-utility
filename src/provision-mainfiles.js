@@ -19,9 +19,6 @@ export function provisionMainFiles() {
     'package.json': {
       contents: jsonFile((packageJson) => sortPackageJson(defaultsDeep({
         main: 'lib/index.js',
-        style: 'lib/index.css',
-        example: 'lib/example.js',
-        examplestyle: 'lib/example.css',
         files: unique([
           ...getObjectPath(packageJson, 'files', []),
           'lib/*',
@@ -67,12 +64,7 @@ if (process.env.NODE_ENV !== 'production') {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => (contents ||
 `import 'babel-polyfill';
-import React from 'react';
 import ${ packageToClass(answers) } from './';
-
-export default (
-  <${ packageToClass(answers) }/>
-)
 `),
     },
   };

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 import { combineProvisionerSets, runProvisionerSet } from 'packagesmith';
 import { basename as baseNamePath } from 'path';
 import packageVersions from '../package-versions';
@@ -13,9 +14,9 @@ import provisionMainFiles from './provision-mainfiles';
 import provisionNpmBabel from 'provision-npm-babel';
 import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
 import provisionPackageJson from './provision-packagejson';
-import provisionReactTestSuite from './provision-react-testsuite';
 import provisionReadme from './provision-readme';
 import provisionStylelint from 'provision-stylelint';
+import provisionTestSuite from './provision-testsuite';
 const git = provisionGit();
 const gitRepositoryQuestionIndex = 0;
 git['.git/config'].questions[gitRepositoryQuestionIndex].default = (answers, dirname) => (
@@ -59,7 +60,7 @@ export function provisionReactComponent() {
     provisionLegacyRemoval(),
     provisionMainFiles(),
     provisionPackageJson(),
-    provisionReactTestSuite(),
+    provisionTestSuite(),
     provisionReadme(),
     provisionStylelint({
       presets: 'strict',
