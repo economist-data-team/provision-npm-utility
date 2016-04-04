@@ -1,9 +1,9 @@
 {
-  "name": "@economist/provision-react-component",
+  "name": "@economist/provision-npm-utility",
   "version": "0.0.0-development",
-  "description": "Rapidly provision React components",
-  "homepage": "http://economist-components.github.io/provision-react-component",
-  "bugs": "http://github.com/economist-components/provision-react-component/issues",
+  "description": "Rapidly provision utilies for Economist Data Team interactives",
+  "homepage": "http://economist-components.github.io/provision-npm-utility",
+  "bugs": "http://github.com/economist-components/provision-npm-utility/issues",
   "license": "MIT",
   "author": "The Economist Editorial (https://economist.com)",
   "files": [
@@ -13,7 +13,7 @@
   ],
   "main": "lib/index.js",
   "bin": {
-    "provision-react-component": "lib/index.js"
+    "provision-npm-utility": "lib/index.js"
   },
   "directories": {
     "lib": "lib",
@@ -21,12 +21,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/economist-components/provision-react-component"
+    "url": "git+ssh://github.com/economist-components/provision-npm-utility"
   },
   "scripts": {
     "access": "npm-run-all --parallel access:*",
     "access:public": "npm access public $npm_package_name",
     "access:sudo": "npm access grant read-write economist:read-write-all $npm_package_name",
+    "build" : "npm i && npm t && npm run pages && npm run semantic-release",
     "lint": "eslint $npm_package_directories_src",
     "pages": "echo stub for build.sh",
     "prepublish": "babel $npm_package_directories_src -d $npm_package_directories_lib",

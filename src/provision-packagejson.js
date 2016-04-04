@@ -36,8 +36,6 @@ export function provisionPackageJson() {
             },
           },
           scripts: {
-            'prebuild:css': 'mkdir -p $npm_package_directories_lib',
-            'build:css': 'cp $npm_package_directories_src/*.css $npm_package_directories_lib',
             start: 'npm run watch',
             watch: 'npm-run-all --parallel watch:*',
             'prewatch:serve': 'while [ ! -f site/index.html ]; do sleep 1; done',

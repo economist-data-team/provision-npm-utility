@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import { packageToClass, packageToCss } from './package-names';
 import defaultsDeep from 'lodash.defaultsdeep';
 import getObjectPath from 'lodash.get';
 import jsonFile from 'packagesmith.formats.json';
 import nameQuestion from 'packagesmith.questions.name';
+import { packageToClass } from './package-names';
 import { readFileSync as readFile } from 'fs';
 import { resolve as resolvePath } from 'path';
 import { runProvisionerSet } from 'packagesmith';
@@ -27,44 +27,12 @@ export function provisionMainFiles() {
       }, packageJson))),
     },
 
-    'src/index.css': {
-      questions: [ nameQuestion() ],
-      contents: (contents, answers) => (contents ||
-`.${ packageToCss(answers) } {
-}
-  `),
-    },
-
-    'src/example.css': {
-      contents: (contents) => (contents ||
-`@import './';
-`),
-    },
-
     'src/index.js': {
       questions: [ nameQuestion() ],
       contents: (contents, answers) => (contents ||
-`import React from 'react';
-
+`
 export default function ${ packageToClass(answers) }() {
-  return (
-    <div className="${ packageToCss(answers) }">
-    </div>
-  );
 }
-
-if (process.env.NODE_ENV !== 'production') {
-  ${ packageToClass(answers) }.propTypes = {
-  };
-}
-`),
-    },
-
-    'src/example.js': {
-      questions: [ nameQuestion() ],
-      contents: (contents, answers) => (contents ||
-`import 'babel-polyfill';
-import ${ packageToClass(answers) } from './';
 `),
     },
   };
