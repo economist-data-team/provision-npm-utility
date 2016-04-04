@@ -1,7 +1,7 @@
-# Provision React Component
-> Rapidly provision React components
+# Provision NPM utility
+> Rapidly provision utilies for Economist Data Team interactives
 
-This package will allow you to quickly create new components, and update old ones, based on the conventions we follow at [The Economist](http://economist.com/).
+This package will allow you to quickly create new utility functions, and update old ones, based on the conventions we follow at [The Economist](http://economist.com/).
 
 ## How To Install
 
@@ -10,12 +10,12 @@ You can install this package, using [npm](http://npmjs.com/) in your [Terminal](
 To install the package globally, so that you can use it all the time, run:
 
 ```sh
-npm install --global @economist/provision-react-component
+npm install --global @economist/provision-npm-utility
 ```
 
 ## How To Run
 
-With the package installed, you can run `provision-react-component` command - which will provision a React component for you to use. This command takes one argument - the directory that you'd like to provision the react component in...
+With the package installed, you can run `provision-npm-utility` command - which will provision a React component for you to use. This command takes one argument - the directory that you'd like to provision the react component in...
 
 ### Making a new React Component
 
@@ -23,7 +23,7 @@ In your Terminal, `cd` into your Projects directory - for example `cd ~/Projects
 
 ```sh
 # change `my-react-project` to the name of your project
-provision-react-component my-react-project
+provision-npm-utility my-react-project
 ```
 
 The script will ask you some questions, such as the name and description of the project. Here is an example of the questions, complete with answers typed in:
@@ -136,10 +136,7 @@ The directory structure has been carefully considered. Please follow the directo
 
 This is where all of the source code that you will write goes. Typically this consists of:
 
- - `index.js` (the main React Component code)
- - `example.js` (an example of how to use the React Component, used for documentation)
- - `index.css` (the main CSS needed for the main React Component)
- - `example.css` (some example css, used to drive the `example.js`)
+ - `index.js` (the main code)
 
 ### `test/` directory
 
@@ -203,7 +200,7 @@ Your gh-pages website is `https://YOUR-USERNAME.github.io/THE-REPO` - for exampl
 
 #### `npm run provision`
 
-This runs the `provision-react-component` command over your code. You can run this to ensure your files include all of the settings that they should have. If you first run `npm update --save-dev @economist/provision-react-component`, followed by `npm run provision` - then any updates to `provision-react-component` will be reflected into your package.
+This runs the `provision-npm-utility` command over your code. You can run this to ensure your files include all of the settings that they should have. If you first run `npm update --save-dev @economist/provision-npm-utility`, followed by `npm run provision` - then any updates to `provision-npm-utility` will be reflected into your package.
 
 #### `npm run semantic-release`
 `semantic-release pre && npm publish && semantic-release post`
