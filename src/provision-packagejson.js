@@ -3,7 +3,7 @@ import defaultsDeep from 'lodash.defaultsdeep';
 import descriptionQuestion from 'packagesmith.questions.description';
 import jsonFile from 'packagesmith.formats.json';
 import kebabCase from 'lodash.kebabcase';
-import moduleJson from '../package.json';
+// import moduleJson from '../package.json';
 import nameQuestion from 'packagesmith.questions.name';
 import packageVersions from '../package-versions';
 import parsePackageJsonName from 'parse-packagejson-name';
@@ -18,8 +18,8 @@ export function provisionPackageJson() {
           ...parsePackageJsonName(answers.name || packageJson),
           scope: 'economist',
         };
-        const packageName = `component-${ kebabCase(parsedPackageName.fullName.replace(/^component-/, '')) }`;
-        let bugsUrl = `https://github.com/economist-components/${ packageName }/issues`;
+        const packageName = `utility-${ kebabCase(parsedPackageName.fullName.replace(/^utility-/, '')) }`;
+        let bugsUrl = `https://github.com/economist-data-team/${ packageName }/issues`;
         if (typeof packageJson.bugs === 'string') {
           bugsUrl = packageJson.bugs;
           Reflect.deleteProperty(packageJson, 'bugs');
@@ -28,7 +28,7 @@ export function provisionPackageJson() {
           name: `@${ parsedPackageName.scope }/${ packageName }`,
           license: 'MIT',
           description: answers.description,
-          homepage: `https://github.com/economist-components/${ packageName }`,
+          homepage: `https://github.com/economist-data-team/${ packageName }`,
           bugs: { url: bugsUrl },
           config: {
             ghooks: {
@@ -54,7 +54,6 @@ export function provisionPackageJson() {
             provision: 'provision-react-component',
           },
           devDependencies: {
-            '@economist/provision-react-component': moduleJson.version,
             'eslint-plugin-filenames': packageVersions['eslint-plugin-filenames'],
             'eslint-plugin-react': packageVersions['eslint-plugin-react'],
             'live-server': packageVersions['live-server'],
