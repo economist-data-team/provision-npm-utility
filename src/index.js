@@ -16,10 +16,11 @@ import provisionNpmSemanticRelease from 'provision-npm-semantic-release';
 import provisionPackageJson from './provision-packagejson';
 import provisionReadme from './provision-readme';
 import provisionTestSuite from './provision-testsuite';
+import provisionTravisYaml from './provision-travis.js';
 const git = provisionGit();
 const gitRepositoryQuestionIndex = 0;
 git['.git/config'].questions[gitRepositoryQuestionIndex].default = (answers, dirname) => (
-  `git@github.com:economist-components/${ answers.name || baseNamePath(dirname) }.git`
+  `git@github.com:economist-data-team/${ answers.name || baseNamePath(dirname) }.git`
 );
 export function provisionReactComponent() {
   return combineProvisionerSets(
@@ -61,6 +62,7 @@ export function provisionReactComponent() {
     provisionPackageJson(),
     provisionTestSuite(),
     provisionReadme(),
+    provisionTravisYaml(),
   );
 }
 export default provisionReactComponent;

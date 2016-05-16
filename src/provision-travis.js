@@ -7,6 +7,7 @@ import { runProvisionerSet } from 'packagesmith';
 import sortPackageJson from 'sort-package-json';
 import yamlFile from 'packagesmith.formats.yaml';
 
+const NODEVERSION = 4.3;
 export default function provisionTravisYaml() {
   return {
     '.travis.yml': {
@@ -20,8 +21,14 @@ export default function provisionTravisYaml() {
           ],
         },
         'node_js': [
-          '4.3',
+          NODEVERSION,
           'stable',
+        ],
+        'before_install': [
+          'npm i -g npm',
+        ],
+        'script': [
+          'npm t',
         ],
         'after_success': [
           'travis-after-all',
