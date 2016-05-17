@@ -1,5 +1,5 @@
 # Provision NPM utility
-> Rapidly provision utilies for Economist Data Team interactives
+> Rapidly provision utilites for Economist Data Team interactives
 
 This package will allow you to quickly create new utility functions, and update old ones, based on the conventions we follow at [The Economist](http://economist.com/).
 
