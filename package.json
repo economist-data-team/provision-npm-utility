@@ -27,6 +27,7 @@
     "access": "npm-run-all --parallel access:*",
     "access:public": "npm access public $npm_package_name",
     "access:sudo": "npm access grant read-write economist:read-write-all $npm_package_name",
+    "testbuild" : "npm run build && chmod +x $npm_package_directories_lib/index.js",
     "build": "npm i && npm t && npm run pages && npm run semantic-release",
     "lint": "eslint $npm_package_directories_src",
     "pages": "echo stub for build.sh",
