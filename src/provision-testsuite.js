@@ -26,9 +26,6 @@ export function provisionTestFiles() {
         directories: {
           test: 'test',
         },
-        dependencies: {
-          'react': packageVersions.react,
-        },
         devDependencies: {
           'mocha': packageVersions.mocha,
           'chai': packageVersions.chai,

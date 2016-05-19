@@ -57,7 +57,7 @@ module.exports = function configureKarma(config) {
     port: 9876,
     colors: true,
     concurrency: 3,
-    autoWatch: false,
+    autoWatch: true,
     captureTimeout: twoMinutesInMilliseconds,
     browserDisconnectTimeout: twoMinutesInMilliseconds,
     browserNoActivityTimeout: twoMinutesInMilliseconds,

@@ -3,12 +3,10 @@
 import { combineProvisionerSets, runProvisionerSet } from 'packagesmith';
 import { basename as baseNamePath } from 'path';
 import packageVersions from '../package-versions';
-import provisionDocgen from './provision-docgen';
 import provisionEditorConfig from 'provision-editorconfig';
 import provisionEslint from 'provision-eslint';
 import provisionGit from 'provision-git';
 import provisionGitIgnore from 'provision-gitignore';
-import provisionGocdFe from './provision-gocd-fe';
 import provisionLegacyRemoval from './provision-legacy-removal';
 import provisionMainFiles from './provision-mainfiles';
 import provisionNpmBabel from 'provision-npm-babel';
@@ -48,7 +46,6 @@ export function provisionReactComponent() {
       },
     }),
     provisionNpmSemanticRelease(),
-    provisionDocgen(),
     provisionEslint({
       presets: {
         'strict': packageVersions['eslint-config-strict'],
@@ -56,7 +53,6 @@ export function provisionReactComponent() {
       },
       scriptName: 'lint:js',
     }),
-    provisionGocdFe(),
     provisionLegacyRemoval(),
     provisionMainFiles(),
     provisionPackageJson(),
