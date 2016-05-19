@@ -71,6 +71,8 @@ export function provisionTestFiles() {
 `import 'babel-polyfill';
 import ${ packageToClass(answers) } from '../src';
 import chai from 'chai';
+chai.should();
+
 describe('${ packageToClass(answers) }', () => {
 
 });
