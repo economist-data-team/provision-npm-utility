@@ -56,6 +56,8 @@ export function provisionPackageJson() {
             'eslint-plugin-filenames': packageVersions['eslint-plugin-filenames'],
             'eslint-plugin-react': packageVersions['eslint-plugin-react'],
             'live-server': packageVersions['live-server'],
+            'npm-run-all': packageVersions['npm-run-all'],
+            'npm-assets': packageVersions['npm-assets'],
           },
         }, packageJson));
       }),

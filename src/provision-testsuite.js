@@ -27,6 +27,9 @@ export function provisionTestFiles() {
           test: 'test',
         },
         devDependencies: {
+          'browserify': packageVersions.browserify,
+          'watchify': packageVersions.watchify,
+          'babelify': packageVersions.babelify,
           'mocha': packageVersions.mocha,
           'chai': packageVersions.chai,
           'chai-spies': packageVersions['chai-spies'],
