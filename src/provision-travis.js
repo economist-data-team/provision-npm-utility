@@ -34,13 +34,6 @@ export default function provisionTravisYaml() {
           'travis-after-all',
           'npm run semantic-release',
         ].join(' && '),
-        deploy: {
-          provider: 'npm',
-          'skip_cleanup': true,
-          'on': {
-            repo: 'economist-data-team/',
-          },
-        },
       }, travisYaml)),
     },
 
