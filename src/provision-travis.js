@@ -39,7 +39,7 @@ export default function provisionTravisYaml() {
 
     'package.json': {
       contents: jsonFile((packageJson) => sortPackageJson(defaultsDeep({
-        defDependencies: {
+        devDependencies: {
           'travis-after-all': getBestVersion(packageJson, 'travis-after-all'),
         },
       }, packageJson))),
